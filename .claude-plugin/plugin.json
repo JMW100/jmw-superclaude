@@ -1,0 +1,23 @@
+{
+  "name": "jmw-superclaude",
+  "version": "1.0.0",
+  "description": "15 SuperClaude skills for confidence-driven development: confidence-check, deep-research, sc-agent, sc-architecture, sc-executor, sc-performance, sc-quality, sc-security, sc-workflows, skill-selector, create-prd, generate-tasks, index-repo, repo-index, and self-review",
+  "author": "JMW100",
+  "repository": "https://github.com/JMW100/jmw-superclaude",
+  "homepage": "https://github.com/JMW100/jmw-superclaude",
+  "license": "MIT",
+  "keywords": [
+    "jmw-superclaude",
+    "superclaude",
+    "confidence-check",
+    "research",
+    "architecture",
+    "security",
+    "performance",
+    "quality",
+    "workflows",
+    "planning",
+    "prd",
+    "tasks"
+  ]
+}

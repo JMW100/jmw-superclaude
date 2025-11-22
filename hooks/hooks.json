@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl -s -d \"Claude Code needs your attention\" ntfy.sh/$NTFY_TOPIC"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl -s -d \"Claude Code task complete!\" -H \"Title: Claude Code\" -H \"Tags: white_check_mark\" ntfy.sh/$NTFY_TOPIC"
+          }
+        ]
+      }
+    ]
+  }
+}

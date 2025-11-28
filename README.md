@@ -4,8 +4,8 @@
 
 ## 🎉 Features
 
-**15 SuperClaude Skills** across 4 categories:
-- **6 Core Skills**: Session orchestration, confidence checks, research, review, and repository indexing
+**16 SuperClaude Skills** across 4 categories:
+- **7 Core Skills**: Session orchestration, confidence checks, research, review, repository indexing, and session summaries
 - **6 Domain Skills**: Architecture, security, performance, quality, workflows, and execution
 - **2 Planning Skills**: PRD generation and task breakdown (powered by Opus 4)
 - **1 Helper Skill**: Skill selector to guide you to the right tool
@@ -51,7 +51,7 @@ Team members will automatically get the plugin when they trust the repository.
 
 ## Skills Overview
 
-### Core SuperClaude Skills (6)
+### Core SuperClaude Skills (7)
 
 | Skill | Description | Usage |
 |-------|-------------|-------|
@@ -61,6 +61,7 @@ Team members will automatically get the plugin when they trust the repository.
 | **self-review** | Post-implementation validation (evidence-based) | `use self-review` |
 | **repo-index** | Quick repository briefing | `use repo-index` |
 | **index-repo** | Generate PROJECT_INDEX.md (94% token reduction) | `use index-repo` |
+| **session-summary** | Extract session summaries from Claude Code logs (automatic via SessionEnd hook) | `use session-summary` |
 
 ### Domain Task Skills (6)
 
@@ -159,6 +160,35 @@ Parallel execution for 3-5x speedup:
 - **Problem**: Reading all files → ~58,000 tokens
 - **Solution**: Generate PROJECT_INDEX.md → ~3,000 tokens (94% reduction)
 - **ROI**: 550,000 tokens saved over 10 sessions
+
+### 4. Automatic Session Summaries
+
+**NEW:** Session summaries replace manual engineering logs with automatic extraction from Claude Code's native logs.
+
+**How it works:**
+- **Automatic**: SessionEnd hook runs `generate-summary.py` when session ends
+- **Manual**: `use session-summary` for mid-session checkpoints
+- **Storage**: `.context/session-YYYY-MM-DD-HHMM.md` (timestamped files)
+- **Access**: `.context/session-latest.md` symlink (auto-loaded via CLAUDE.md)
+
+**Format** (Inverted Pyramid - scan to detail):
+1. **Current State** (always visible) - Quick status, actions, errors
+2. **Key Decisions** (collapsible) - What was chosen and why
+3. **Full Narrative** (collapsible) - Complete chronological conversation
+
+**Benefits:**
+- ✅ **Memory aid**: Return to parked projects and remember your thinking
+- ✅ **Context for future Claude instances**: Auto-loaded via CLAUDE.md reference
+- ✅ **No logging burden**: Extracted from existing session logs, no active maintenance
+- ✅ **Simple architecture**: Single source of truth (Claude Code's logs)
+
+**Setup in your projects:**
+Add to `.claude/CLAUDE.md`:
+```markdown
+## Session Context
+
+Before starting work, read `.context/session-latest.md` for recent context.
+```
 
 ## Technical Preferences
 

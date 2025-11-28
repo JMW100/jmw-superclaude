@@ -85,14 +85,14 @@ The sc-agent skill coordinates complex multi-step tasks:
 1. **Clarify scope** - Define success criteria and constraints
 2. **Plan investigation** - Use parallel execution, delegate to specialized skills
 3. **Iterate until confident** - Require ≥0.90 confidence before implementation
-4. **Implementation wave** - TDD, complexity assessment, planning, loop detection, activity logging
+4. **Implementation wave** - TDD, complexity assessment, planning, loop detection
 5. **Self-review** - Validate outcomes and identify follow-up
 
 **Key Implementation Details:**
 - **Complexity assessment**: Simple/Medium/Hard determines planning depth
 - **TDD always**: Write failing tests first, then implement to pass
 - **Loop detection**: Max 20 attempts, stop if stuck (same error 3x or no progress after 10 attempts)
-- **Activity logging**: Detailed narrative summaries in `engineering_log.md` at workspace root
+- **Session summaries**: Automatic extraction from Claude Code logs at session end
 - **Educational explanations**: Explain what/why/alternatives/takeaway throughout
 
 ### confidence-check: 5 Weighted Checks
@@ -121,16 +121,16 @@ Parallel research execution for 3-5x speedup:
 - **Checkpoint**: Analyze results, verify sources, identify gaps
 - **Wave 2**: Fill gaps, verify conflicts, find examples
 
-### Engineering Log Pattern
+### Session Summary Pattern
 
-sc-agent maintains `engineering_log.md` in workspace root with:
-- Task start/completion timestamps
-- Complexity assessments
-- Implementation attempts and progress (detailed narrative format)
-- Key technical decisions
-- Problem-solving journey summary
-- Alternatives considered and rejected
-- Blockers and resolutions
+Session summaries are automatically generated at session end from Claude Code's native logs:
+- Stored in `.context/session-YYYY-MM-DD-HHMM.md` (timestamped files)
+- Symlinked via `.context/session-latest.md` for easy reference
+- Format: Inverted pyramid (Current State → Decisions → Full Narrative)
+- Collapsible sections for scan-to-detail reading
+- CLAUDE.md references `.context/session-latest.md` for auto-loading
+- Manual checkpoint: `use session-summary` skill
+- Automatic generation: SessionEnd hook runs Python extraction script
 
 ## Plugin Development Principles
 
@@ -139,7 +139,7 @@ sc-agent maintains `engineering_log.md` in workspace root with:
 1. **Prevents wrong-direction execution** - confidence-check requires ≥0.90 before implementation
 2. **Systematizes workflows** - sc-agent provides 5-step protocol
 3. **Enables parallel research** - deep-research coordinates multiple sources
-4. **Documents decisions** - engineering_log.md captures problem-solving journey
+4. **Documents decisions** - session summaries capture problem-solving journey
 5. **Validates outcomes** - self-review provides evidence-based validation
 6. **Optimizes tokens** - repo-index reduces 58K tokens to 3K (94% reduction)
 
@@ -212,7 +212,7 @@ See `preferences/python-backend.md` for:
 The plugin is working correctly when:
 1. Skills follow documented protocols systematically
 2. Confidence checks prevent premature implementation
-3. engineering_log.md captures decision narratives
+3. Session summaries capture decision narratives in `.context/`
 4. Skills delegate to each other appropriately
 5. Token usage is optimized through repo-index and confidence-check
 6. TDD is enforced (tests before implementation)

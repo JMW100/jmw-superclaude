@@ -13,7 +13,7 @@ SC Agent provides a systematic 5-step workflow for tackling tasks:
 1. **Clarify scope** - Define success criteria and constraints
 2. **Plan investigation** - Use parallel execution and delegate to specialized skills
 3. **Iterate until confident** - Track confidence, require ≥0.90 before implementation
-4. **Implementation wave** - Execute with TDD, complexity assessment, planning (medium/hard), loop detection (max 20 attempts), activity logging to engineering_log.md, and educational explanations
+4. **Implementation wave** - Execute with TDD, complexity assessment, planning (medium/hard), loop detection (max 20 attempts), and educational explanations
 5. **Self-review and reflexion** - Validate outcomes and identify follow-up
 
 ## When to Use
@@ -28,24 +28,6 @@ Use sc-agent for:
 - Simple, well-understood single-step tasks
 - Urgent fixes where the solution is obvious
 - Exploratory/research-only tasks
-
-## Engineering Log
-
-SC Agent maintains **engineering_log.md** in the workspace root to track implementation activity:
-
-**Location:** `<workspace-root>/engineering_log.md`
-
-**Purpose:** Succinct activity log showing:
-- Task start/completion timestamps
-- Complexity assessments
-- Implementation attempts and progress
-- Key technical decisions
-- Blockers and resolutions
-- Duration/effort tracking
-
-**Format:** Markdown with timestamped sections (see Implementation Wave → Activity Logging for details)
-
-**Benefit:** Historical record of development decisions and patterns for future reference
 
 ---
 
@@ -119,8 +101,7 @@ Track implementation attempts to prevent infinite loops:
 - **No progress threshold:** If no tests passing after 10 attempts → Stop and report
 
 **When stuck:**
-1. Log to engineering_log.md (see Logging below)
-2. Report to user:
+1. Report to user:
    ```
    ⚠️ Stuck after [N] attempts.
    Error: [last error]
@@ -134,74 +115,9 @@ Track implementation attempts to prevent infinite loops:
 
    What would you like to do?
    ```
-3. Wait for user decision (NEVER loop infinitely)
+2. Wait for user decision (NEVER loop infinitely)
 
-#### E. Activity Logging
-Maintain engineering_log.md with DETAILED narrative summaries:
-
-**At task start:**
-```markdown
-## [YYYY-MM-DD HH:MM] Task: [Task ID/Name]
-
-**Complexity:** [Simple/Medium/Hard]
-**Approach:** [1-2 sentence strategy]
-**Initial Understanding:** [What you know about the problem]
-**Unknowns:** [What you need to figure out]
-```
-
-**During implementation - NARRATIVE FORMAT:**
-```markdown
-### Implementation Narrative
-
-🔄 **Attempt 1: [What you tried]**
-- **Why this approach:** [Reasoning for choosing this method]
-- **What I did:** [Step-by-step actions taken]
-- **Result:** [✅ Worked / ❌ Failed / ⚠️ Partial]
-- **What I learned:** [Key insight from this attempt]
-
-🔄 **Attempt 2: [What you tried next]** (if applicable)
-- **Why I switched:** [Root cause of previous failure, why you're trying something new]
-- **Alternatives considered:** [What else you thought about and why you rejected it]
-- **What I did:** [Step-by-step actions taken]
-- **Result:** [✅ Worked / ❌ Failed / ⚠️ Partial]
-- **What I learned:** [Key insight from this attempt]
-
-[Continue for each significant attempt or pivot]
-
-### Tests Written
-- ✅ [count] test cases covering: [what aspects]
-- 🔄 Tests passing: [count]/[total]
-- ⚠️ Failed tests: [what failed and why, if any]
-```
-
-**At completion or blockage:**
-```markdown
-### Result: [Complete/Blocked/Partial]
-
-**Files changed:** [list with brief description of what changed in each]
-**Tests:** [passing]/[total]
-
-**Problem-Solving Journey Summary:**
-1. [Started with X approach because Y]
-2. [Hit problem Z, diagnosed it as...]
-3. [Tried alternative W, which worked because...]
-4. [Final solution uses Q for these reasons...]
-
-**Key Decisions & Trade-offs:**
-- [Decision 1]: Chose X over Y because [reasoning]
-- [Decision 2]: Accepted trade-off of [downside] to gain [benefit]
-- [Decision 3]: [etc.]
-
-**Alternatives Considered & Rejected:**
-- [Option A]: Rejected because [specific reason]
-- [Option B]: Rejected because [specific reason]
-
-**Blockers:** [if any - with detailed explanation]
-**Duration:** [approximate time/attempts]
-**Confidence in solution:** [High/Medium/Low and why]
-```
-
-#### F. Educational Explanations
+#### E. Educational Explanations
 Throughout implementation, explain:
 1. **What** you're doing (the action)
 2. **Why** you chose this approach (the reasoning)
@@ -218,7 +134,7 @@ complexity. Key takeaway: Factories are great when you need runtime
 object creation based on conditions.
 ```
 
-#### G. Grouped Execution
+#### F. Grouped Execution
 - Prepare edits as checkpoint summaries
 - Run tests after each logical group of changes
 - Use parallel tool calls where possible
@@ -254,8 +170,7 @@ SC Agent workflow:
    b. Plan approach: [show 5-step plan, get user confirmation]
    c. TDD: Write auth tests first (login, logout, token refresh)
    d. Implement: Build to pass tests (attempt 1-20, track progress)
-   e. Log to engineering_log.md: Document decisions and progress
-   f. Explain: "Using JWT because it's stateless. Considered sessions but
+   e. Explain: "Using JWT because it's stateless. Considered sessions but
       they require server-side storage. Trade-off: Must handle token expiry."
 5. Validate → @self-review (verify tests pass, security checks, requirements met)
 ```
@@ -367,8 +282,6 @@ but much better testability.
 - Add error handling for API failures
 
 **Blockers:** None
-
-**Logged to:** engineering_log.md
 ```
 
 ---
@@ -382,10 +295,9 @@ You'll know SC Agent is working when:
 4. ✅ Tests written BEFORE implementation (TDD)
 5. ✅ Complexity assessed and planning done for medium/hard tasks
 6. ✅ Loop detection active (max 20 attempts, stops if stuck)
-7. ✅ Activity logged to engineering_log.md with succinct summaries
-8. ✅ Educational explanations provided (what/why/alternatives/takeaway)
-9. ✅ Updates are concise and progress-focused
-10. ✅ Self-review validates outcomes with evidence
+7. ✅ Educational explanations provided (what/why/alternatives/takeaway)
+8. ✅ Updates are concise and progress-focused
+9. ✅ Self-review validates outcomes with evidence
 
 ---
 

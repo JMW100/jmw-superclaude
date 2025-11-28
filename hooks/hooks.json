@@ -21,6 +21,17 @@
           }
         ]
       }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 scripts/generate-summary.py"
+          }
+        ]
+      }
     ]
   }
 }

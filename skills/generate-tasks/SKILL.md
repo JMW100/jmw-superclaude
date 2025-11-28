@@ -82,17 +82,6 @@ Update the file after completing each sub-task, not just after completing an ent
   - [ ] [N.6] Log maintenance and accessibility
 ```
 
-**CRITICAL: Always include a final parent task for "Implementation Narrative Documentation and Logging" with the following standard sub-tasks:**
-
-- Engineering log setup (verify engineering_log.md exists, review format, create directories)
-- Narrative logging requirements (log initial understanding, document reasoning for each attempt, capture results and learnings)
-- Problem-solving journey documentation (write summaries, document decisions, list trade-offs, record alternatives)
-- Test and error logging (log test cases, document failures, record errors with resolution steps)
-- Cross-task learning capture (review logs for patterns, identify recurring issues, update best practices)
-- Log maintenance and accessibility (organize sections, create TOC, generate summaries, archive completed sections)
-
-This ensures that sc-agent (which will execute the tasks via sc-executor) has explicit guidance to maintain detailed narrative logs of the implementation process.
-
 ## Interaction Model
 
 The process explicitly requires a pause after generating parent tasks to get user confirmation ("Go") before proceeding to generate the detailed sub-tasks. This ensures the high-level plan aligns with user expectations before diving into details.

@@ -1,15 +1,20 @@
 {
-  "name": "JMW SuperClaude Marketplace",
+  "name": "jmw-superclaude-marketplace",
   "description": "JMW's customized SuperClaude skills and development patterns",
-  "owner": "JMW100",
-  "url": "https://github.com/JMW100/jmw-superclaude",
+  "owner": {
+    "name": "JMW100",
+    "url": "https://github.com/JMW100"
+  },
   "plugins": [
     {
       "name": "jmw-superclaude",
       "source": "./",
-      "description": "15 SuperClaude skills for confidence-driven development: 6 core skills (sc-agent, confidence-check, deep-research, self-review, repo-index, index-repo), 6 domain skills (sc-architecture, sc-security, sc-workflows, sc-performance, sc-quality, sc-executor), 2 planning skills (create-prd, generate-tasks with Opus 4), and skill-selector helper. Includes technical preferences for Next.js/Supabase and Python/FastAPI.",
+      "description": "16 SuperClaude skills for confidence-driven development: 7 core skills (sc-agent, confidence-check, deep-research, self-review, repo-index, index-repo, session-summary), 6 domain skills (sc-architecture, sc-security, sc-workflows, sc-performance, sc-quality, sc-executor), 2 planning skills (create-prd, generate-tasks with Opus 4), and skill-selector helper.",
       "version": "1.0.0",
-      "author": "JMW100",
+      "author": {
+        "name": "JMW100",
+        "url": "https://github.com/JMW100"
+      },
       "license": "MIT",
       "tags": [
         "jmw-superclaude",

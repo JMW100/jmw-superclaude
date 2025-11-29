@@ -122,7 +122,7 @@ cd /path/to/your/project
 mkdir -p .claude
 
 # Symlink the skills
-ln -s ~/jmw-superclaude/.claude/skills .claude/skills
+ln -s ~/jmw-superclaude/skills .claude/skills
 ```
 
 ### Step 3: Copy Scripts
@@ -172,7 +172,7 @@ For selective installation of specific skills only.
 
 Visit https://github.com/JMW100/jmw-superclaude and download:
 
-- `.claude/skills/` - All skills (or just the ones you want)
+- `skills/` - All skills (at plugin root) (or just the ones you want)
 - `scripts/generate-summary.py` - Session summary script
 - `scripts/install-hooks.sh` - Hook installation script
 - `preferences/` - Technical preferences (optional)
@@ -184,9 +184,9 @@ Visit https://github.com/JMW100/jmw-superclaude and download:
 mkdir -p .claude/skills
 mkdir -p scripts
 
-# Copy skills (example: just sc-agent and confidence-check)
-cp -r /path/to/downloaded/.claude/skills/sc-agent .claude/skills/
-cp -r /path/to/downloaded/.claude/skills/confidence-check .claude/skills/
+# Copy skills to YOUR project's .claude/skills/ (example: just sc-agent and confidence-check)
+cp -r /path/to/downloaded/skills/sc-agent .claude/skills/
+cp -r /path/to/downloaded/skills/confidence-check .claude/skills/
 
 # Copy scripts
 cp /path/to/downloaded/scripts/generate-summary.py scripts/
@@ -230,7 +230,7 @@ Team members will automatically get the plugin when they trust the repository.
 
 | Component | Location | Purpose |
 |-----------|----------|---------|
-| Skills (16) | `.claude/skills/` | Core functionality |
+| Skills (16) | `skills/` | Core functionality |
 | Session Summary Script | `scripts/generate-summary.py` | Extracts session summaries |
 | SessionEnd Hook | `.claude/settings.local.json` | Auto-triggers summaries |
 | Session Summaries | `.context/session-*.md` | Stored summaries |
@@ -303,7 +303,7 @@ Should create `.context/session-*.md` file.
 Check that skills are discoverable:
 
 ```bash
-ls -la .claude/skills/
+ls -la skills/
 ```
 
 Should show all 16 skill directories:
@@ -332,7 +332,7 @@ Should show all 16 skill directories:
 
 **Cause:** Skills not in correct location.
 
-**Fix:** Ensure skills are in `.claude/skills/[skill-name]/SKILL.md`
+**Fix:** Ensure skills are in `skills/[skill-name]/SKILL.md`
 
 ### Session summaries not generating
 
@@ -398,7 +398,7 @@ git pull
 ### Remove Local Files
 
 ```bash
-rm -rf .claude/skills/
+rm -rf skills/
 rm -f scripts/generate-summary.py
 rm -rf .context/
 ```

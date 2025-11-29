@@ -16,38 +16,25 @@
 
 ### Quick Start
 
-```bash
-# Add the SuperClaude marketplace
+```
+# 1. Add the marketplace
 /plugin marketplace add https://github.com/JMW100/jmw-superclaude
 
-# Install the plugin
+# 2. Install the plugin
 /plugin install jmw-superclaude@jmw-superclaude
 
-# Verify installation
+# 3. Install hooks for session summaries (run in terminal)
+curl -fsSL https://raw.githubusercontent.com/JMW100/jmw-superclaude/main/scripts/install-hooks.sh | bash
+
+# 4. Copy the session summary script
+mkdir -p scripts
+curl -fsSL https://raw.githubusercontent.com/JMW100/jmw-superclaude/main/scripts/generate-summary.py -o scripts/generate-summary.py
+
+# 5. Verify installation
 /help
 ```
 
-### Team Setup
-
-Add to your repository's `.claude/settings.json`:
-
-```json
-{
-  "plugins": {
-    "marketplaces": [
-      {
-        "name": "jmw-superclaude",
-        "source": "https://github.com/JMW100/jmw-superclaude"
-      }
-    ],
-    "enabled": [
-      "jmw-superclaude@jmw-superclaude"
-    ]
-  }
-}
-```
-
-Team members will automatically get the plugin when they trust the repository.
+**For detailed installation options** (including team setup, git clone, and manual methods), see **[INSTALL.md](INSTALL.md)**.
 
 ## Skills Overview
 

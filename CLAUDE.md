@@ -9,24 +9,29 @@ This is **JMW SuperClaude** - a Claude Code plugin providing 15 specialized skil
 ## Repository Structure
 
 ```
+.claude/
+  skills/             # 16 skills (Claude Code standard location)
+    [skill-name]/
+      SKILL.md
+  settings.local.json # Hooks configuration (SessionEnd, etc.)
 .claude-plugin/
   marketplace.json    # Marketplace configuration
   plugin.json         # Plugin metadata
+scripts/
+  generate-summary.py # Session summary extraction script
+  install-hooks.sh    # Hook installation script
 hooks/
-  hooks.json          # Optional ntfy.sh notification hooks
+  hooks.json          # Optional ntfy.sh notification hooks (reference)
 preferences/
-  web-app-db.md      # Next.js + Supabase stack preferences
+  web-app-db.md       # Next.js + Supabase stack preferences
   python-backend.md   # FastAPI + SQLAlchemy preferences
-skills/
-  [15 skills]/       # Each skill has a SKILL.md file
-    SKILL.md
 ```
 
 ## Key Concepts
 
 ### Skills Architecture
 
-Skills are invoked with `use [skill-name]` and are loaded from `skills/[skill-name]/SKILL.md`. Each skill is a self-contained markdown file that provides instructions for specific workflows.
+Skills are invoked with `use [skill-name]` and are loaded from `.claude/skills/[skill-name]/SKILL.md`. Each skill is a self-contained markdown file that provides instructions for specific workflows.
 
 **15 Skills across 4 categories:**
 
@@ -59,7 +64,7 @@ This repository contains only markdown files and JSON configuration. There is no
 ### Modifying Skills
 
 To update a skill:
-1. Edit the relevant `skills/[skill-name]/SKILL.md` file
+1. Edit the relevant `.claude/skills/[skill-name]/SKILL.md` file
 2. The skill will be immediately available (no compilation needed)
 3. Test the skill by using it: `use [skill-name]`
 
@@ -72,7 +77,7 @@ To update technical preferences:
 
 ### Adding New Skills
 
-1. Create directory: `skills/[skill-name]/`
+1. Create directory: `.claude/skills/[skill-name]/`
 2. Add `SKILL.md` with the skill instructions
 3. Skills are auto-discovered from the directory structure
 
@@ -170,10 +175,11 @@ From the existing skills:
 
 ### File Organization
 
-- Skills go in `skills/[skill-name]/SKILL.md`
+- Skills go in `.claude/skills/[skill-name]/SKILL.md`
 - Preferences go in `preferences/[stack-name].md`
 - Plugin metadata in `.claude-plugin/`
-- Hooks configuration in `hooks/hooks.json`
+- Hooks configuration in `.claude/settings.local.json`
+- Scripts in `scripts/`
 
 ### Naming
 

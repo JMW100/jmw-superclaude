@@ -21,6 +21,23 @@ Use this skill when you have:
 
 ---
 
+## Progress Tracking (Dual System)
+
+sc-executor uses **two complementary tracking systems**:
+
+| System | Purpose | Persistence |
+|--------|---------|-------------|
+| **TodoWrite** | Real-time UI feedback during execution | Session only (ephemeral) |
+| **`/tasks/*.md`** | Persistent record, resume capability | Permanent (survives crashes) |
+
+**Why both?**
+- TodoWrite shows live progress in Claude Code UI
+- Task file checkboxes persist if session crashes at task 4 (you know 1-3 are done)
+- Team members can see progress without asking Claude
+- Enables "resume from checkpoint" functionality
+
+---
+
 ## How It Works
 
 **Pattern: Supervisor → Worker**
@@ -76,17 +93,24 @@ use sc-executor to implement these tasks:
 1. **Parse Task List**
    - Extract numbered tasks from user input
    - Validate task list is clear and actionable
-   - Create TodoWrite list for tracking
+   - Create TodoWrite list for tracking (real-time UI feedback)
 
-2. **Confirm Scope**
+2. **Locate Task File (if exists)**
+   - Check for `/tasks/tasks-*.md` file matching this work
+   - If found: Will update checkboxes as tasks complete (persistent record)
+   - If not found: TodoWrite only (ephemeral, session-only tracking)
+
+3. **Confirm Scope**
    - Total tasks: X
-   - Estimated time per task (if provided)
+   - Task file: `/tasks/tasks-feature.md` or "None (TodoWrite only)"
    - Ask user to confirm before starting
 
 **Output:**
 ```
 📋 Task Execution Plan
 Tasks to execute: 6
+Task file: /tasks/tasks-user-management.md (checkboxes will be updated)
+
 1. Implement user database schema
 2. Create authentication API with JWT
 3. Add RBAC authorization
@@ -104,7 +128,8 @@ Ready to proceed? (yes/no)
 **For each task in the list:**
 
 1. **Mark Task as In Progress**
-   - Update TodoWrite: Task N → in_progress
+   - Update TodoWrite: Task N → in_progress (real-time UI feedback)
+   - If task file exists (`/tasks/tasks-*.md`): No change yet (only mark complete when done)
 
 2. **Delegate to sc-agent**
    - Invoke: "use sc-agent to implement [Task N]"
@@ -128,8 +153,10 @@ Ready to proceed? (yes/no)
    - Key outputs (files created, tests added)
    - Any issues or follow-ups
 
-5. **Mark Complete**
-   - Update TodoWrite: Task N → completed
+5. **Mark Complete (Both Systems)**
+   - Update TodoWrite: Task N → completed (real-time UI feedback)
+   - **Update task file** (`/tasks/tasks-*.md`): Edit `- [ ] N.0` → `- [x] N.0` (persistent record)
+   - Also mark completed sub-tasks: `- [ ] N.1` → `- [x] N.1`, etc.
    - Move to next task
 
 **If Task Fails:**

@@ -102,45 +102,50 @@ def extract_summary_data(events: List[Dict[str, Any]]) -> Dict[str, Any]:
     }
 
     for event in events:
-        # Extract based on event type/structure
-        # This is a simplified extraction - actual structure may vary
-        if isinstance(event, dict):
-            # User messages
-            if event.get('role') == 'user':
-                content = event.get('content', '')
-                if isinstance(content, str):
-                    data['user_messages'].append(content)
-                elif isinstance(content, list):
-                    for item in content:
-                        if isinstance(item, dict) and item.get('type') == 'text':
-                            data['user_messages'].append(item.get('text', ''))
+        if not isinstance(event, dict):
+            continue
 
-            # Assistant messages
-            elif event.get('role') == 'assistant':
-                content = event.get('content', '')
-                if isinstance(content, str):
-                    data['assistant_messages'].append(content)
-                elif isinstance(content, list):
-                    for item in content:
-                        if isinstance(item, dict):
-                            if item.get('type') == 'text':
-                                data['assistant_messages'].append(item.get('text', ''))
-                            elif item.get('type') == 'tool_use':
-                                data['tool_uses'].append({
-                                    'name': item.get('name'),
-                                    'input': item.get('input')
-                                })
+        # Handle nested message format (actual Claude Code log structure)
+        # Events have: {"message": {"role": "...", "content": [...]}, "type": "user"|"assistant", ...}
+        msg = event.get('message', event)  # Fall back to event itself for flat format
+        role = msg.get('role')
+        content = msg.get('content', '')
 
-            # Tool results
-            if event.get('type') == 'tool_result':
-                result = {
-                    'tool_use_id': event.get('tool_use_id'),
-                    'content': event.get('content')
-                }
-                # Check for errors
-                if event.get('is_error'):
-                    data['errors'].append(result)
-                data['tool_results'].append(result)
+        # User messages
+        if role == 'user':
+            if isinstance(content, str):
+                data['user_messages'].append(content)
+            elif isinstance(content, list):
+                for item in content:
+                    if isinstance(item, dict) and item.get('type') == 'text':
+                        data['user_messages'].append(item.get('text', ''))
+                    elif isinstance(item, str):
+                        data['user_messages'].append(item)
+
+        # Assistant messages
+        elif role == 'assistant':
+            if isinstance(content, str):
+                data['assistant_messages'].append(content)
+            elif isinstance(content, list):
+                for item in content:
+                    if isinstance(item, dict):
+                        if item.get('type') == 'text':
+                            data['assistant_messages'].append(item.get('text', ''))
+                        elif item.get('type') == 'tool_use':
+                            data['tool_uses'].append({
+                                'name': item.get('name'),
+                                'input': item.get('input')
+                            })
+
+        # Tool results (can be at event level)
+        if event.get('type') == 'tool_result':
+            result = {
+                'tool_use_id': event.get('tool_use_id'),
+                'content': event.get('content')
+            }
+            if event.get('is_error'):
+                data['errors'].append(result)
+            data['tool_results'].append(result)
 
     return data
 

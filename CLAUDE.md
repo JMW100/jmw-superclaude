@@ -137,39 +137,14 @@ Session summaries are automatically generated at session end from Claude Code's 
 - Manual checkpoint: `use session-summary` skill
 - Automatic generation: SessionEnd hook runs Python extraction script
 
-## Plugin Development Principles
+## Plugin Development
 
-### What the Plugin Does
-
-1. **Prevents wrong-direction execution** - confidence-check requires ≥0.90 before implementation
-2. **Systematizes workflows** - sc-agent provides 5-step protocol
-3. **Enables parallel research** - deep-research coordinates multiple sources
-4. **Documents decisions** - session summaries capture problem-solving journey
-5. **Validates outcomes** - self-review provides evidence-based validation
-6. **Optimizes tokens** - repo-index reduces 58K tokens to 3K (94% reduction)
-
-### What to Avoid
-
-When modifying this plugin:
-
-❌ Don't add build/test/lint processes (it's just markdown and JSON)
-❌ Don't make skills overly verbose (skills are loaded into context)
-❌ Don't duplicate general best practices (assume modern LLM baseline)
-❌ Don't hardcode stack choices (use preferences/ files for opinions)
-❌ Don't create circular skill dependencies
-❌ Don't add files that won't be read by skills or plugin system
-
-### Skill Design Principles
-
-From the existing skills:
-
-1. **Clear purpose statement** - First line states what the skill does
-2. **When to invoke** - Explicit guidance on when to use/not use
-3. **Weighted scoring** - confidence-check uses explicit weights for objectivity
-4. **Output format examples** - Show concrete examples of good output
-5. **Integration points** - Document how skills work together
-6. **Token discipline** - Keep communication concise, avoid redundancy
-7. **Delegation over reinvention** - Skills should delegate to other skills when appropriate
+For detailed plugin development guidance, see [docs/plugin-development.md](docs/plugin-development.md), which covers:
+- Plugin file structure and location requirements
+- SKILL.md YAML frontmatter format
+- JSON schema requirements for plugin.json and marketplace.json
+- Testing workflow for plugin changes
+- Common mistakes and troubleshooting
 
 ## Important Conventions
 

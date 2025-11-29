@@ -1,3 +1,8 @@
+---
+name: generate-tasks
+description: Breaks down features, PRDs, or projects into actionable development tasks using Claude Opus 4
+---
+
 # Generate Tasks - Task List Generator (Opus 4)
 
 **Purpose:** Generate detailed, step-by-step task lists using Claude Opus 4 for maximum clarity and completeness.

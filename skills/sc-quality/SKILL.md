@@ -1,3 +1,8 @@
+---
+name: sc-quality
+description: Quality assurance and testing including test strategy, unit/integration/e2e testing, and code review
+---
+
 # SC Quality - Quality & Testing Tasks
 
 ## When to Use This Skill

@@ -1,3 +1,8 @@
+---
+name: create-prd
+description: Generates comprehensive Product Requirements Documents using Claude Opus 4 for maximum quality
+---
+
 # Create PRD - Product Requirements Document Generator (Opus 4)
 
 **Purpose:** Generate comprehensive Product Requirements Documents (PRDs) using Claude Opus 4 for maximum quality and depth.

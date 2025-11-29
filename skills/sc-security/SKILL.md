@@ -1,3 +1,8 @@
+---
+name: sc-security
+description: Security and compliance tasks including auth, audits, threat modeling, and secure coding
+---
+
 # SC Security - Security & Compliance Tasks
 
 ## When to Use This Skill

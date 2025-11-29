@@ -1,3 +1,8 @@
+---
+name: sc-executor
+description: Multi-task project executor that systematically executes task lists using sc-agent
+---
+
 # SC Executor - Multi-Task Project Executor
 
 ## When to Use This Skill

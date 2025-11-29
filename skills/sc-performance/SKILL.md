@@ -1,3 +1,8 @@
+---
+name: sc-performance
+description: Performance optimization including profiling, query optimization, caching, and load testing
+---
+
 # SC Performance - Performance Optimization Tasks
 
 ## When to Use This Skill

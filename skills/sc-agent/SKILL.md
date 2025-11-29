@@ -1,3 +1,8 @@
+---
+name: sc-agent
+description: Session orchestrator coordinating task workflow from clarification through implementation to validation
+---
+
 # SC Agent - Session Orchestrator
 
 **Purpose:** Coordinates task workflow from clarification through implementation to validation, delegating to specialized skills for maximum efficiency.

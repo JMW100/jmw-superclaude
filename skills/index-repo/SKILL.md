@@ -1,3 +1,8 @@
+---
+name: index-repo
+description: Generates PROJECT_INDEX.md for 94% token reduction (58K to 3K tokens per session)
+---
+
 # Index-Repo - Generate PROJECT_INDEX.md for 94% Token Reduction
 
 **Purpose:** Generate comprehensive PROJECT_INDEX.md to reduce per-session token usage from 58,000 to 3,000 tokens (94% reduction).

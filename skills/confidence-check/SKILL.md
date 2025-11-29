@@ -1,3 +1,8 @@
+---
+name: confidence-check
+description: Prevents wrong-direction execution by assessing confidence BEFORE implementation. Requires 90% score to proceed.
+---
+
 # Confidence Check - Pre-Implementation Assessment
 
 **Purpose:** Prevents wrong-direction execution by assessing confidence BEFORE starting implementation.

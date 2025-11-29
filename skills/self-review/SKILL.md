@@ -1,3 +1,8 @@
+---
+name: self-review
+description: Post-implementation validation to confirm production readiness using evidence-only approach
+---
+
 # Self-Review - Post-Implementation Validation
 
 **Purpose:** Evidence-based post-implementation validation to confirm production readiness and capture lessons learned.

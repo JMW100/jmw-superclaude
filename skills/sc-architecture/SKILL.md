@@ -1,3 +1,8 @@
+---
+name: sc-architecture
+description: System design and architecture tasks including APIs, databases, infrastructure, and scalability planning
+---
+
 # SC Architecture - System Design Tasks
 
 ## When to Use This Skill

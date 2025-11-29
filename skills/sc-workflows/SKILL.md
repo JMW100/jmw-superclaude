@@ -1,3 +1,8 @@
+---
+name: sc-workflows
+description: Development workflow tasks including troubleshooting, debugging, documentation, and planning
+---
+
 # SC Workflows - Development Workflow Tasks
 
 ## When to Use This Skill

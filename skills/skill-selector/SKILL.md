@@ -1,3 +1,8 @@
+---
+name: skill-selector
+description: Helps choose the right SuperClaude skill based on development phase, task type, and goals
+---
+
 # Skill Selector - Choose the Right Skill for Your Task
 
 ## When to Use This Skill

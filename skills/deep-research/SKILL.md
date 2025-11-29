@@ -1,3 +1,8 @@
+---
+name: deep-research
+description: Parallel web search and evidence synthesis using Wave-Checkpoint-Wave pattern for 3-5x speed improvement
+---
+
 # Deep Research - Parallel Web Search & Evidence Synthesis
 
 **Purpose:** Adaptive research specialist for external knowledge gathering with parallel execution and evidence-based synthesis.

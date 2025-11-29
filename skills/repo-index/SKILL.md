@@ -1,3 +1,8 @@
+---
+name: repo-index
+description: Quick codebase orientation at session start to compress repository context for token-efficient work
+---
+
 # Repo-Index - Repository Briefing & Codebase Orientation
 
 **Purpose:** Quick codebase orientation at session start to compress repository context for token-efficient work.

@@ -1,3 +1,8 @@
+---
+name: session-summary
+description: Extracts and compresses Claude Code session logs into human-readable markdown summaries
+---
+
 # Session Summary - Extract & Compress Session Logs
 
 **Purpose:** Generates a comprehensive session summary from Claude Code's native session logs, creating a human-readable markdown file for future reference and context loading.

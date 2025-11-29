@@ -150,11 +150,20 @@ For detailed plugin development guidance, see [docs/plugin-development.md](docs/
 
 ### File Organization
 
-- Skills go in `skills/[skill-name]/SKILL.md`
-- Preferences go in `preferences/[stack-name].md`
-- Plugin metadata in `.claude-plugin/`
-- Hooks configuration in `.claude/settings.local.json`
-- Scripts in `scripts/`
+| Directory | Purpose | Reader |
+|-----------|---------|--------|
+| `skills/` | Executable workflows invoked via `use` | Claude Code (runtime) |
+| `preferences/` | Stack-specific conventions loaded by skills | Skills (runtime) |
+| `docs/` | Reference documentation for plugin development | Humans, CLAUDE.md |
+| `scripts/` | Utility scripts users run manually | Users (manual) |
+| `.claude-plugin/` | Plugin/marketplace metadata | Claude Code (discovery) |
+
+**Key distinction:**
+- `skills/` and `preferences/` = **runtime content** (shapes Claude's behavior during tasks)
+- `docs/` = **reference content** (guides humans developing the plugin)
+- `scripts/` = **utilities** (actions that can't be expressed as skills)
+
+Preferences stay in `preferences/` (not `docs/`) because they are operational content loaded by skills at runtime, not documentation.
 
 ### Naming
 

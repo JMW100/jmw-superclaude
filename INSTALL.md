@@ -24,64 +24,39 @@ Choose **one** of the following methods:
 
 ## Method 1: Plugin System (Recommended)
 
-### Step 1: Add the Marketplace
+### Step 1: Add Marketplace & Install Plugin
 
 Open Claude Code in your project directory and run:
 
 ```
 /plugin marketplace add https://github.com/JMW100/jmw-superclaude
-```
-
-### Step 2: Install the Plugin
-
-```
 /plugin install jmw-superclaude@jmw-superclaude
 ```
 
-### Step 3: Verify Installation
+### Step 2: Complete Installation
 
-```
-/help
-```
-
-You should see the SuperClaude skills listed (16 skills total).
-
-### Step 4: Install Hooks (Required for Session Summaries)
-
-The plugin system cannot auto-install hooks for security reasons. Run this manually:
-
-**Option A: One-liner (curl)**
-```bash
-curl -fsSL https://raw.githubusercontent.com/JMW100/jmw-superclaude/main/scripts/install-hooks.sh | bash
-```
-
-**Option B: Download and run**
-```bash
-# Download the script
-curl -fsSL https://raw.githubusercontent.com/JMW100/jmw-superclaude/main/scripts/install-hooks.sh -o install-hooks.sh
-
-# Review it (always good practice)
-cat install-hooks.sh
-
-# Run it
-bash install-hooks.sh
-rm install-hooks.sh
-```
-
-### Step 5: Copy Required Scripts
-
-The session summary feature needs the Python script in your project:
+Run the install script to set up hooks, scripts, and preferences:
 
 ```bash
-# Create scripts directory
-mkdir -p scripts
-
-# Download the script
-curl -fsSL https://raw.githubusercontent.com/JMW100/jmw-superclaude/main/scripts/generate-summary.py -o scripts/generate-summary.py
-chmod +x scripts/generate-summary.py
+curl -fsSL https://raw.githubusercontent.com/JMW100/jmw-superclaude/main/scripts/install.sh | bash
 ```
 
-### Step 6: Enable Session Context Loading (Optional but Recommended)
+This single command:
+- Installs SessionEnd hook for automatic session summaries
+- Copies `generate-summary.py` to `scripts/`
+- Copies all preferences to `preferences/` for customization
+- Creates `.context/` directory for session summaries
+
+**Options:**
+```bash
+# Minimal install (hooks + scripts only, skip preferences)
+curl -fsSL .../scripts/install.sh | bash -s -- --minimal
+
+# Include docs for local reference
+curl -fsSL .../scripts/install.sh | bash -s -- --with-docs
+```
+
+### Step 3: Enable Session Context Loading (Recommended)
 
 Add this to your project's `CLAUDE.md` (create if it doesn't exist):
 
@@ -125,23 +100,15 @@ mkdir -p .claude
 ln -s ~/jmw-superclaude/skills .claude/skills
 ```
 
-### Step 3: Copy Scripts
+### Step 3: Run Install Script
 
 ```bash
-# Create scripts directory
-mkdir -p scripts
-
-# Copy the session summary script
-cp ~/jmw-superclaude/scripts/generate-summary.py scripts/
+bash ~/jmw-superclaude/scripts/install.sh
 ```
 
-### Step 4: Install Hooks
+This copies scripts, preferences, and installs hooks.
 
-```bash
-bash ~/jmw-superclaude/scripts/install-hooks.sh
-```
-
-### Step 5: Enable Session Context Loading
+### Step 4: Enable Session Context Loading
 
 Add to your `CLAUDE.md`:
 
@@ -173,8 +140,8 @@ For selective installation of specific skills only.
 Visit https://github.com/JMW100/jmw-superclaude and download:
 
 - `skills/` - All skills (at plugin root) (or just the ones you want)
+- `scripts/install.sh` - Complete installation script
 - `scripts/generate-summary.py` - Session summary script
-- `scripts/install-hooks.sh` - Hook installation script
 - `preferences/` - Technical preferences (optional)
 
 ### Step 2: Copy to Your Project
@@ -192,10 +159,10 @@ cp -r /path/to/downloaded/skills/confidence-check .claude/skills/
 cp /path/to/downloaded/scripts/generate-summary.py scripts/
 ```
 
-### Step 3: Install Hooks
+### Step 3: Install Hooks and Preferences
 
 ```bash
-bash /path/to/downloaded/scripts/install-hooks.sh
+bash /path/to/downloaded/scripts/install.sh
 ```
 
 ---
@@ -222,7 +189,7 @@ To share SuperClaude with your entire team, add this to your repository's `.clau
 
 Team members will automatically get the plugin when they trust the repository.
 
-**Note:** Each team member must still run the hook installation script individually (Step 4 of Method 1).
+**Note:** Each team member must still run the install script individually (Step 2 of Method 1).
 
 ---
 
@@ -346,14 +313,13 @@ cat .claude/settings.local.json | grep SessionEnd
 ls -la scripts/generate-summary.py
 ```
 
-**Fix:** Re-run the hook installation script.
+**Fix:** Re-run the install script: `bash scripts/install.sh`
 
 ### "Permission denied" on scripts
 
 **Fix:**
 ```bash
 chmod +x scripts/generate-summary.py
-chmod +x scripts/install-hooks.sh
 ```
 
 ### Plugin not showing in `/plugin`

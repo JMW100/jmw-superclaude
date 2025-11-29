@@ -319,7 +319,12 @@ Hooks cannot be auto-installed by plugins for security reasons. Users must manua
 
 Users run the installation script:
 ```bash
-bash scripts/install-hooks.sh
+curl -fsSL https://raw.githubusercontent.com/JMW100/jmw-superclaude/main/scripts/install.sh | bash
+```
+
+Or if they have the repo cloned:
+```bash
+bash scripts/install.sh
 ```
 
 Or manually add to `.claude/settings.local.json`:
@@ -349,3 +354,4 @@ Or manually add to `.claude/settings.local.json`:
 |---------|------|---------|
 | 1.0.0 | 2024 | Initial release with 16 skills |
 | 1.0.1 | 2024 | Added YAML frontmatter for plugin discovery |
+| 1.0.2 | 2024 | Comprehensive install.sh replacing install-hooks.sh |

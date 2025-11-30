@@ -2,8 +2,8 @@
 
 **Source PRD:** `/tasks/prd-best-practices-integration.md`
 **Created:** 2025-11-29
-**Updated:** 2025-11-30 (Added nested skills architecture, flow documentation, skill-selector review)
-**Total Tasks:** 46
+**Updated:** 2025-11-30 (Added nested skills architecture, flow documentation, skill-selector review, create-prd living document support)
+**Total Tasks:** 47
 **Estimated Phases:** 5
 
 ---
@@ -355,6 +355,58 @@ CLAUDE.md now requires using skill-selector first for all non-trivial tasks. As 
 - [ ] Decision paths tested for common scenarios
 
 **Note:** This task should be done AFTER Task 1.4 (stack awareness) since they're related.
+
+---
+
+### Task 1.7: Add Living Document Support to create-prd
+**File:** `skills/core/create-prd/SKILL.md`
+**FR Reference:** PRD best practices (living document pattern)
+
+**Rationale:**
+PRDs should be living documents that evolve with the system, not replaced. The create-prd skill currently only supports creating new PRDs. It needs:
+- An "update mode" for evolving existing PRDs
+- A Change History section in the template
+- Guidance on when to update vs create new
+
+**Changes Required:**
+- [ ] Add "## PRD Modes" section explaining Create vs Update modes
+- [ ] Add mode detection logic (check if PRD exists at target path)
+- [ ] Add "### Change History" section to PRD template structure
+- [ ] Define Change History format: Date, Version, Author, Changes
+- [ ] Add clarifying question about existing PRD when relevant
+- [ ] Add guidance: "When to Update vs Create New PRD"
+- [ ] Update "Process" section to include update workflow
+- [ ] Add version increment logic (1.0 → 1.1 → 1.2)
+
+**Change History Template:**
+```markdown
+## Change History
+
+| Date | Version | Author | Summary |
+|------|---------|--------|---------|
+| YYYY-MM-DD | 1.1 | [Author] | [Brief description of changes] |
+| YYYY-MM-DD | 1.0 | [Author] | Initial PRD |
+```
+
+**Update Mode Workflow:**
+1. Check if PRD exists at `/tasks/prd-[feature-name].md`
+2. If exists, ask: "Update existing PRD or create new?"
+3. If update: Read existing PRD, identify sections to update
+4. Add entry to Change History with current date and version increment
+5. Preserve existing content unless explicitly changing
+
+**When to Update vs Create New:**
+- **Update existing PRD when:** Evolving requirements, adding features to existing system, refining scope
+- **Create new PRD when:** Distinct initiative with different goals, major pivot where old requirements don't apply
+
+**Acceptance Criteria:**
+- [ ] Create vs Update mode documented
+- [ ] Change History section in template
+- [ ] Version increment logic documented
+- [ ] Update workflow clearly described
+- [ ] Guidance on when to use each mode
+
+**Estimated Tokens Added:** +300-400
 
 ---
 
@@ -921,19 +973,19 @@ CLAUDE.md now requires using skill-selector first for all non-trivial tasks. As 
 | Priority | Tasks | Status |
 |----------|-------|--------|
 | MUST (Phase 0) | 6 | Pending |
-| MUST (Phase 1) | 6 | Pending |
+| MUST (Phase 1) | 7 | Pending |
 | MUST (Phase 2) | 5 | Pending |
 | MUST/SHOULD (Phase 3) | 9 | Pending |
 | SHOULD (Phase 4) | 5 | Pending |
 | Validation (Phase 5) | 7 | Pending |
-| **Total** | **46** | **Pending** |
+| **Total** | **47** | **Pending** |
 
 ### By Phase
 
 | Phase | Tasks | Focus |
 |-------|-------|-------|
 | Phase 0 | 6 | Directory restructuring (DO FIRST) |
-| Phase 1 | 6 | Core skill updates (TDD, edge cases, skill-selector, flow docs, skill-selector review) |
+| Phase 1 | 7 | Core skill updates (TDD, edge cases, skill-selector, flow docs, skill-selector review, create-prd living docs) |
 | Phase 2 | 5 | New core skills & templates (code-review, CI/CD, ADR) |
 | Phase 3 | 9 | Stack-specific skills (7 new skills + marketplace + index) |
 | Phase 4 | 5 | Preference extensions & documentation |
@@ -968,7 +1020,7 @@ PHASE 0 (Do First - Restructuring)
 0.1 → 0.2 → 0.3 → 0.4 → 0.5 → 0.6 (sequential - depends on each other)
 
 PHASE 1 (Core Updates)
-1.1, 1.2, 1.3, 1.5 (parallel - different files)
+1.1, 1.2, 1.3, 1.5, 1.7 (parallel - different files)
     ↓
 1.4 (skill-selector stack awareness)
     ↓

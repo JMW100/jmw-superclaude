@@ -1,21 +1,13 @@
 ---
 name: create-prd
-description: Generates comprehensive Product Requirements Documents using Claude Opus 4 for maximum quality
+description: Generates comprehensive Product Requirements Documents for maximum quality
 ---
 
-# Create PRD - Product Requirements Document Generator (Opus 4)
+# Create PRD - Product Requirements Document Generator
 
-**Purpose:** Generate comprehensive Product Requirements Documents (PRDs) using Claude Opus 4 for maximum quality and depth.
+**Purpose:** Generate comprehensive Product Requirements Documents (PRDs) for maximum quality and depth.
 
 **When to invoke:** Use this skill when you need to create a detailed PRD for a new feature, product, or project.
-
----
-
-## CRITICAL: Use Opus 4
-
-**This skill MUST use Claude Opus 4 for optimal results.**
-
-When invoking this skill, Claude will use the Task tool with `model: "opus"` to ensure the highest quality PRD generation.
 
 ---
 
@@ -105,17 +97,16 @@ Assume the primary reader of the PRD is a **junior developer**. Therefore, requi
 
 **When this skill is invoked:**
 
-1. **Use Opus 4** - Invoke the Task tool with these parameters:
+1. **Invoke the Task tool** with these parameters:
    ```
    Task(
      subagent_type: "general-purpose",
-     model: "opus",
-     description: "Generate PRD using Opus 4",
+     description: "Generate PRD",
      prompt: "[Full prompt with user context and instructions above]"
    )
    ```
 
-2. **The Opus agent should:**
+2. **The agent should:**
    - Ask 3-5 clarifying questions with A/B/C/D options
    - Wait for user responses
    - Generate comprehensive PRD following the structure above
@@ -123,15 +114,3 @@ Assume the primary reader of the PRD is a **junior developer**. Therefore, requi
    - Present summary to user
 
 3. **Do NOT implement the feature** - Only create the PRD document
-
----
-
-## Why Opus 4?
-
-PRD creation benefits from Opus 4's:
-- **Superior reasoning** - Deep analysis of requirements and trade-offs
-- **Comprehensive thinking** - Thorough coverage of edge cases and risks
-- **Strategic insight** - Better understanding of business context and user needs
-- **Quality writing** - Clear, professional documentation suitable for stakeholders
-
-The extra cost of Opus is justified for strategic planning documents that guide entire projects.

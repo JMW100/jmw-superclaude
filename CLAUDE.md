@@ -29,6 +29,49 @@ preferences/
 
 ## Key Concepts
 
+### Skill Usage Protocol (MANDATORY)
+
+**CRITICAL:** Before performing any non-trivial task manually, you MUST use skills.
+
+**Protocol:**
+1. For ANY non-trivial request, FIRST invoke `use skill-selector`
+2. skill-selector will recommend the appropriate skill(s)
+3. Use the recommended skill(s) - do NOT perform the task manually
+4. Only proceed manually if skill-selector explicitly says "no applicable skill"
+
+**Why This Matters:**
+- Skills use optimized workflows (e.g., create-prd and generate-tasks use Opus 4)
+- Skills enforce best practices (TDD, confidence checks, evidence-based review)
+- Skills prevent wasted tokens from wrong-direction work
+- Manual work bypasses these safeguards
+
+**Examples of "Non-Trivial" Tasks:**
+- Creating PRDs, requirements, or specifications
+- Breaking down features into tasks
+- Implementing new features
+- Reviewing code
+- Researching topics
+- Debugging or troubleshooting
+- Performance optimization
+- Security assessments
+
+**Trivial Tasks (OK to skip skill-selector):**
+- Answering a quick question
+- Making a single small edit
+- Running a command the user specified
+- Reading a file the user asked about
+
+**Anti-Pattern to Avoid:**
+```
+❌ User: "Create a PRD for user authentication"
+   Claude: *writes PRD manually*
+
+✅ User: "Create a PRD for user authentication"
+   Claude: "use skill-selector" → recommends create-prd → "use create-prd"
+```
+
+**Remember:** If you find yourself about to write a PRD, task list, research summary, implementation plan, or review - STOP and use skill-selector first.
+
 ### Skills Architecture
 
 Skills are invoked with `use [skill-name]` and are loaded from `skills/[skill-name]/SKILL.md`. Each skill is a self-contained markdown file that provides instructions for specific workflows.

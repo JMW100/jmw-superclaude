@@ -1,21 +1,13 @@
 ---
 name: generate-tasks
-description: Breaks down features, PRDs, or projects into actionable development tasks using Claude Opus 4
+description: Breaks down features, PRDs, or projects into actionable development tasks
 ---
 
-# Generate Tasks - Task List Generator (Opus 4)
+# Generate Tasks - Task List Generator
 
-**Purpose:** Generate detailed, step-by-step task lists using Claude Opus 4 for maximum clarity and completeness.
+**Purpose:** Generate detailed, step-by-step task lists for maximum clarity and completeness.
 
 **When to invoke:** Use this skill when you need to break down a feature, PRD, or project into actionable development tasks.
-
----
-
-## CRITICAL: Use Opus 4
-
-**This skill MUST use Claude Opus 4 for optimal results.**
-
-When invoking this skill, Claude will use the Task tool with `model: "opus"` to ensure thorough task breakdown and clarity.
 
 ---
 
@@ -101,17 +93,16 @@ Assume the primary reader of the task list is a **junior developer** who will im
 
 **When this skill is invoked:**
 
-1. **Use Opus 4** - Invoke the Task tool with these parameters:
+1. **Invoke the Task tool** with these parameters:
    ```
    Task(
      subagent_type: "general-purpose",
-     model: "opus",
-     description: "Generate task list using Opus 4",
+     description: "Generate task list",
      prompt: "[Full prompt with user context and instructions above]"
    )
    ```
 
-2. **The Opus agent should:**
+2. **The agent should:**
    - Analyze the requirements (from PRD, feature description, or user input)
    - Generate high-level parent tasks (Phase 1)
    - **ALWAYS include a final parent task for "Implementation Narrative Documentation and Logging"**
@@ -135,18 +126,6 @@ Assume the primary reader of the task list is a **junior developer** who will im
 
 ---
 
-## Why Opus 4?
-
-Task generation benefits from Opus 4's:
-- **Superior reasoning** - Better understanding of dependencies and logical flow
-- **Comprehensive thinking** - Thorough coverage of all implementation steps
-- **Detail-oriented** - Catches edge cases and testing requirements
-- **Developer empathy** - Creates tasks suitable for junior developers
-
-The extra cost of Opus is justified for task lists that guide entire feature implementations and ensure nothing is missed.
-
----
-
 ## Usage Examples
 
 **Example 1: From PRD**
@@ -163,4 +142,4 @@ use generate-tasks to break down implementing a dark mode toggle
 ```
 how do I generate tasks now?
 ```
-Answer: Use the `generate-tasks` skill! It creates detailed task lists using Opus 4.
+Answer: Use the `generate-tasks` skill! It creates detailed task lists from PRDs or feature descriptions.

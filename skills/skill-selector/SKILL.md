@@ -32,13 +32,13 @@ Simply describe what you're trying to accomplish, and I'll recommend which skill
    - Prevents wasted effort on wrong approaches
    - Keywords: "should I", "is this possible", "best approach"
 
-2. **create-prd** - Product Requirements Document (Opus 4)
+2. **create-prd** - Product Requirements Document
    - Create comprehensive PRD for new features
    - Ask clarifying questions with easy A/B/C/D options
    - Generate detailed specifications for junior developers
    - Keywords: "create PRD", "write requirements", "product spec", "feature requirements"
 
-3. **generate-tasks** - Task List Generator (Opus 4)
+3. **generate-tasks** - Task List Generator
    - Break down PRDs or features into actionable tasks
    - Two-phase approach: parent tasks → "Go" → sub-tasks
    - Identifies relevant files and test requirements
@@ -420,13 +420,13 @@ sc-agent (implement refactoring) → sc-quality (add tests) → self-review
 ## Frequently Asked Questions
 
 **Q: How do I create a PRD now?**
-A: Use the `create-prd` skill! It uses Opus 4 to generate comprehensive PRDs with clarifying questions.
+A: Use the `create-prd` skill! It generates comprehensive PRDs with clarifying questions.
 ```
 use create-prd for [feature name]
 ```
 
 **Q: How do I generate tasks now?**
-A: Use the `generate-tasks` skill! It uses Opus 4 to create detailed task lists from PRDs or feature descriptions.
+A: Use the `generate-tasks` skill! It creates detailed task lists from PRDs or feature descriptions.
 ```
 use generate-tasks from prd-[feature-name].md
 ```
@@ -446,9 +446,6 @@ A: Not always!
 - For complex features: Yes, use both in sequence
 - For simple features: Use generate-tasks directly with a description
 - For strategic planning: Use create-prd alone
-
-**Q: Why do create-prd and generate-tasks use Opus 4?**
-A: Both skills use Opus 4 for superior reasoning, comprehensive thinking, and quality output. The extra cost is justified for strategic planning documents that guide entire projects.
 
 ---
 
@@ -472,8 +469,8 @@ I'll analyze your request and recommend the right skill(s) to use!
 | Skill | Primary Use | Key Phrases |
 |-------|-------------|-------------|
 | **confidence-check** | Pre-implementation assessment | "should I", "is this feasible", "confidence" |
-| **create-prd** | Product requirements (Opus 4) | "create PRD", "write requirements", "product spec" |
-| **generate-tasks** | Task breakdown (Opus 4) | "generate tasks", "break down", "how do I generate tasks" |
+| **create-prd** | Product requirements | "create PRD", "write requirements", "product spec" |
+| **generate-tasks** | Task breakdown | "generate tasks", "break down", "how do I generate tasks" |
 | **sc-agent** | Orchestrated implementation | "build", "implement", "create feature" |
 | **sc-architecture** | System design | "design", "architecture", "tech stack", "database" |
 | **sc-security** | Security tasks | "secure", "authentication", "OWASP", "encryption" |

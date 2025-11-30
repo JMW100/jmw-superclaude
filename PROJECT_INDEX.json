@@ -1,0 +1,81 @@
+{
+  "generated": "2025-11-30",
+  "generator": "SuperClaude index-repo skill",
+  "next_update": "2025-12-07",
+  "project": {
+    "name": "jmw-superclaude",
+    "version": "1.0.0",
+    "description": "Claude Code plugin providing 16 specialized skills for confidence-driven development",
+    "repository": "https://github.com/JMW100/jmw-superclaude",
+    "license": "MIT"
+  },
+  "entry_points": [
+    "CLAUDE.md",
+    "README.md",
+    "INSTALL.md",
+    ".claude-plugin/plugin.json",
+    ".claude-plugin/marketplace.json"
+  ],
+  "skills": {
+    "core": [
+      {"name": "sc-agent", "purpose": "5-step task orchestration with confidence-driven development"},
+      {"name": "confidence-check", "purpose": "Pre-implementation assessment (5 weighted checks)"},
+      {"name": "deep-research", "purpose": "Parallel web search with Wave→Checkpoint→Wave pattern"},
+      {"name": "self-review", "purpose": "Post-implementation validation (4-question evidence-based)"},
+      {"name": "repo-index", "purpose": "Quick codebase orientation at session start"},
+      {"name": "index-repo", "purpose": "Generate PROJECT_INDEX.md (94% token reduction)"},
+      {"name": "session-summary", "purpose": "Extract session logs into markdown summaries"}
+    ],
+    "domain": [
+      {"name": "sc-architecture", "purpose": "System design, APIs, databases, infrastructure"},
+      {"name": "sc-security", "purpose": "Security audits, auth, threat modeling"},
+      {"name": "sc-performance", "purpose": "Profiling, query optimization, caching"},
+      {"name": "sc-quality", "purpose": "Test strategy, unit/integration/e2e testing"},
+      {"name": "sc-workflows", "purpose": "Troubleshooting, debugging, documentation"},
+      {"name": "sc-executor", "purpose": "Multi-task project executor"}
+    ],
+    "planning": [
+      {"name": "create-prd", "purpose": "Generate comprehensive PRDs"},
+      {"name": "generate-tasks", "purpose": "Break down features into actionable tasks"}
+    ],
+    "helper": [
+      {"name": "skill-selector", "purpose": "Recommend appropriate skill(s) for any task"}
+    ]
+  },
+  "preferences": [
+    {"file": "preferences/web-app-db.md", "stack": "Next.js + Supabase"},
+    {"file": "preferences/python-backend.md", "stack": "FastAPI + SQLAlchemy"},
+    {"file": "preferences/multi-agent-orchestration.md", "stack": "Multi-agent patterns"}
+  ],
+  "documentation": {
+    "active": [
+      "docs/plugin-development.md",
+      "docs/building-robust-systems-guide.md",
+      "docs/git-private-repo-setup.md"
+    ],
+    "tasks": [
+      "tasks/prd-best-practices-integration.md",
+      "tasks/task-list-best-practices-integration.md",
+      "tasks/claude-md-skill-protocol-update.md"
+    ],
+    "archive": "archive/"
+  },
+  "scripts": [
+    {"file": "scripts/install.sh", "purpose": "Comprehensive installation"},
+    {"file": "scripts/install-hooks.sh", "purpose": "Hook installation for ntfy.sh"},
+    {"file": "scripts/generate-summary.py", "purpose": "Session summary extraction"}
+  ],
+  "configuration": [
+    ".claude-plugin/plugin.json",
+    ".claude-plugin/marketplace.json",
+    ".claude/settings.local.json",
+    "hooks/hooks.json"
+  ],
+  "statistics": {
+    "skills": 16,
+    "preferences": 3,
+    "active_docs": 3,
+    "scripts": 3,
+    "pending_tasks": 47
+  }
+}
